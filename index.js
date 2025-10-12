@@ -52,18 +52,18 @@ type Mutation {
 const employeeResolver = (employee) => {
     if (!employee) {
         return null;
-    }   
+    }
     return {
-        ...employee,            
+        ...employee,
         department: () => {
             console.log(`Buscando departamento para empleado ${employee.id}`);
             return departments.find(dep => dep.id === employee.departmentId);
         },
-        
+
         manager: () => {
             console.log(`Buscando manager para empleado ${employee.id}`);
             const managerData = employees.find(emp => emp.id === employee.managerId);
-            return employeeResolver(managerData); 
+            return employeeResolver(managerData);
         }
     };
 };
@@ -99,7 +99,7 @@ const root = {
     updateEmployee: ({ id, firstName, lastName, email, salary, departmentId, managerId }) => {
         const employeeIndex = employees.findIndex(emp => emp.id === parseInt(id));
         if (employeeIndex === -1) throw new Error('Employee not found');
-        
+
         const employeeData = employees[employeeIndex];
         employeeData.firstName = firstName !== undefined ? firstName : employeeData.firstName;
         employeeData.lastName = lastName !== undefined ? lastName : employeeData.lastName;
@@ -107,9 +107,9 @@ const root = {
         employeeData.salary = salary !== undefined ? salary : employeeData.salary;
         employeeData.departmentId = departmentId !== undefined ? parseInt(departmentId) : employeeData.departmentId;
         employeeData.managerId = managerId !== undefined ? (managerId ? parseInt(managerId) : null) : employeeData.managerId;
-        
+
         employees[employeeIndex] = employeeData;
-        return employeeResolver(employeeData); 
+        return employeeResolver(employeeData);
     },
 
     deleteEmployee: ({ id }) => {
@@ -134,6 +134,6 @@ app.get('/', (req, res) => {
     res.end(ruruHTML({ endpoint: '/graphql' }));
 });
 
-app.listen(7777, () => {
-    console.log('Running a GraphQL API server at http://localhost:7777');
+app.listen(7777, '0.0.0.0', () => {
+    console.log("Servidor corriendo en http://0.0.0.0:4000");
 });
