@@ -1,5 +1,6 @@
 import { buildSchema } from 'graphql';
-import { graphqlHTTP } from 'express-graphql';
+import { createHandler } from 'graphql-http/lib/use/express';
+import { ruruHTML } from 'ruru/server';
 import express from 'express';
 
 const departments = [
@@ -123,12 +124,16 @@ const root = {
 
 const app = express();
 
-app.use('/graphql', graphqlHTTP({
-    schema: schema,
+app.all('/graphql', createHandler({
+    schema,
     rootValue: root,
-    graphiql: true,
 }));
 
+app.get('/', (req, res) => {
+    res.type('html');
+    res.end(ruruHTML({ endpoint: '/graphql' }));
+});
+
 app.listen(7777, () => {
-    console.log('Running a GraphQL API server at http://localhost:7777/graphql');
+    console.log('Running a GraphQL API server at http://localhost:7777');
 });
