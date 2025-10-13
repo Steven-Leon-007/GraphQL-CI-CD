@@ -134,6 +134,6 @@ app.get('/', (req, res) => {
     res.end(ruruHTML({ endpoint: '/graphql' }));
 });
 
-app.listen(7777, '0.0.0.0', () => {
-    console.log("Servidor corriendo en http://0.0.0.0:4000");
+app.listen(777, '0.0.0.0', () => {
+    console.log("Servidor corriendo en http://0.0.0.0:777");
 });
