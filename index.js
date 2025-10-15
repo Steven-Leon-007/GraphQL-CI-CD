@@ -11,7 +11,7 @@ const departments = [
 const employees = [
     { id: 1, firstName: 'Steven', lastName: 'León', email: 'steven@example.com', salary: 70000, departmentId: 10, managerId: 2 },
     { id: 2, firstName: 'Nicolas', lastName: 'Muñoz', email: 'nicolas@example.com', salary: 650000, departmentId: 20, managerId: 3 },
-    { id: 3, firstName: 'William', lastName: 'Gonzalez', email: 'william@example.com', salary: 50000, departmentId: 10, managerId: 4 },
+    { id: 3, firstName: 'Jose', lastName: 'Gonzalez', email: 'william@example.com', salary: 50000, departmentId: 10, managerId: 4 },
     { id: 4, firstName: 'Camila', lastName: 'Valencia', email: 'Camila@correo.com', salary: 999999, departmentId: 10, managerId: null }
 ];
 
